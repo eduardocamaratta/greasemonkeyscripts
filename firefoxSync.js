@@ -47,6 +47,7 @@ activeScripts.forEach(function(s) {
 
   // Ignore if the files are bitwise identical
   if(sameChecksum(s, profilePath)) {
+    console.log(name, 'Ignored (same checksum)');
     return;
   }
 
@@ -55,10 +56,12 @@ activeScripts.forEach(function(s) {
 
   // Repo version is newer
   if(repoStat.ctime > profileStat.ctime) {
+    console.log(name, 'Updating script in Firefox profile with the one from the repository');
     copyFile(s, profilePath);
 
   // Profile version is newer
   } else if (profileStat.ctime > repoStat.ctime) {
+    console.log(name, 'Updating script in repository with the one from Firefox profile');
     copyFile(profilePath, s);
   }
 });
