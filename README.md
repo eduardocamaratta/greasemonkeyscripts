@@ -1,6 +1,6 @@
 # Greasemonkey Scripts
 
-This repository is a collection of my personal [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey) scripts. I believe this scripts can be used with [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) as well.
+This repository is a collection of my personal [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey) scripts. I believe these scripts can be used with [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) as well.
 
 ## Author
 
