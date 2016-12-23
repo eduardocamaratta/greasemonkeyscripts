@@ -180,9 +180,8 @@ const repositoryScriptsNames = scripts.map((s) => s.name)
 const greasemonkeyScriptDirs = fs.readdirSync(greasemonkeyPath).filter((p) => !p.match(/^.*\.xml$/));
 greasemonkeyScriptDirs.forEach((f) => {
   if(repositoryScriptsNames.indexOf(f) == -1) {
-    // TODO: Test this!
-    // fs.rmdirSync(path.join(greasemonkeyPath, f));
-    console.log('TODO: Remove dir ' + path.join(greasemonkeyPath, f));
+    console.log('remove dir ' + path.join(greasemonkeyPath, f));
+    fs.rmdirSync(path.join(greasemonkeyPath, f));
     dirty = true;
   }
 });
@@ -194,26 +193,22 @@ scripts.forEach((s) => {
   if(greasemonkeyScriptDirs.indexOf(s.name) != -1) {
     if(checksum(fs.readFileSync(s.fileName)) != checksum(fs.readFileSync(profileScriptPath))) {
       if(fs.statSync(s.fileName).mtime > fs.statSync(profileScriptPath).mtime, s.name) {
-        // TODO: Test this!
-        // copyFile(s.fileName, profileScriptPath);
-        console.log('TODO: different checksums, repo is newer', s.name);
+        console.log('different checksums, repo is newer', s.name);
+        copyFile(s.fileName, profileScriptPath);
         s.obj.$.modified = (new Date()).valueOf();
         dirty = true;
       } else {
-        // TODO: Test this!
-        // copyFile(profileScriptPath, s.fileName);
-        console.log('TODO: different checksums, profile is newer', s.name);
+        console.log('different checksums, profile is newer', s.name);
+        copyFile(profileScriptPath, s.fileName);
       }
     }
 
 // Create the directories (and copy the scripts) when the files are new
   } else {
-    // TODO: Test this!
-    // fs.mkdirSync(profileScriptDir);
-    console.log('TODO: create directory', profileScriptDir);
-    // TODO: Test this!
-    // copyFile(s.fileName, profileScriptPath);
-    console.log('TODO: copy file', profileScriptPath);
+    console.log('create directory', profileScriptDir);
+    fs.mkdirSync(profileScriptDir);
+    console.log('copy file', profileScriptPath);
+    copyFile(s.fileName, profileScriptPath);
     dirty = true;
   }
 });
@@ -221,9 +216,8 @@ scripts.forEach((s) => {
 // Backup the configuration file
 if(dirty) {
   const greasemonkeyConfigBackupPath = path.join(greasemonkeyPath, 'config-1.xml');
-  // TODO: Test this!
-  // copyFile(greasemonkeyConfigPath, greasemonkeyConfigBackupPath);
-  console.log('TODO: copy ', greasemonkeyConfigPath, 'to', greasemonkeyConfigBackupPath);
+  console.log('copy ', greasemonkeyConfigPath, 'to', greasemonkeyConfigBackupPath);
+  copyFile(greasemonkeyConfigPath, greasemonkeyConfigBackupPath);
 
 // Write the new configuration file
   var newConfiguration = {
@@ -233,14 +227,6 @@ if(dirty) {
   }
   var builder = new xml2js.Builder();
   var xml = builder.buildObject(newConfiguration);
-  // TODO: Test this!
-  // fs.writeFileSync(greasemonkeyConfigPath, xml);
-  console.log('TODO: write new xml to ', greasemonkeyConfigPath);
-
-  // TODO: remove this debug information
-  const util = require('util');
-  console.log('**************** Compare xmls: Original ************************** ');
-  console.log(util.inspect(configuration, false, null));
-  console.log('**************** Compare xmls: Generated ************************** ');
-  console.log(util.inspect(newConfiguration, false, null));
+  console.log('Write new xml to ', greasemonkeyConfigPath);
+  fs.writeFileSync(greasemonkeyConfigPath, xml);
 }
