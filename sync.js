@@ -101,7 +101,7 @@ var addOptionsFromFile = function(scriptInfo, obj) {
 };
 
 var createNewConfig = function(scriptInfo, greasemonkeyPath) {
-  const scriptPath = 'file://' + encodeURI(path.join(greasemonkeyPath, scriptInfo.name, scriptInfo.fileName));
+  const scriptPath = 'file://' + path.join(greasemonkeyPath, scriptInfo.name, scriptInfo.fileName).replace(/ /g, '%20');
   const currentTime = (new Date()).valueOf();
   return addOptionsFromFile(scriptInfo, { '$': {
       basedir: scriptInfo.name,
@@ -197,7 +197,7 @@ scripts.forEach((s) => {
         // TODO: Test this!
         // copyFile(s.fileName, profileScriptPath);
         console.log('TODO: different checksums, repo is newer', s.name);
-        s.obj.modified = (new Date()).valueOf();
+        s.obj.$.modified = (new Date()).valueOf();
         dirty = true;
       } else {
         // TODO: Test this!
