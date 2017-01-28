@@ -1,5 +1,12 @@
 {
   "name": "greasemonkeySync",
+  "version": "0.0.1",
+  "description": "A collection of my personal Greasemonkey scripts",
+  "repository": {
+    "type": "",
+    "url": "git@github.com:eduardocamaratta/greasemonkeyscripts.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "uuid": "^3.0.1",
     "xml2js": "^0.4.17"
