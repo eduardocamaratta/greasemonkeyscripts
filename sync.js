@@ -1,5 +1,7 @@
 #! /usr/bin/env node
 
+'use strict'
+
 const fs = require('fs'),
     path = require('path'),
   crypto = require('crypto'),
@@ -132,7 +134,7 @@ const firefoxProfilesPaths = {
 
 // Check if Firefox profiles are accessible
 const firefoxProfilesPath = path.join.apply(null, firefoxProfilesPaths[process.platform]);
-exitIfPathInacessible(firefoxProfilesPaths, 'Check if Firefox is correctly installed');
+exitIfPathInacessible(firefoxProfilesPath, 'Check if Firefox is correctly installed');
 
 // Check if the Greasemonkey config file is accessible
 const greasemonkeyPath = path.join(firefoxProfilesPath, fs.readdirSync(firefoxProfilesPath)[0], 'gm_scripts');
