@@ -1,5 +1,11 @@
 # Greasemonkey Scripts
 
+## Deprecation Notice
+
+**These scripts are deprecated! For updated scripts please refer to [TampermonkeyScripts](https://github.com/eduardocamaratta/tampermonkeyscripts)**
+
+## Description
+
 This repository is a collection of my personal [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey) scripts. I believe these scripts can be used with [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en) as well.
 
 ## Author
